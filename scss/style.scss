@@ -1,0 +1,199 @@
+// ----- vars, functions, mixins -----
+$color-primary: #722ED1;
+$color-secondary: #F7F1FF;
+$color-title: #160637;
+$color-text: rgba(0, 0, 0, .5);
+$color-dark: #000;
+
+$transition: .3s;
+
+$tablet: 991.5px;
+$phone: 767.5px;
+
+@function rem($x) {
+	@return ($x / 16)+rem;
+}
+
+@mixin title {
+	h2 {
+		color: $color-title;
+		font-weight: 700;
+		font-size: rem(32);
+		line-height: rem(40);
+		padding: 24px 0;
+		text-align: center;
+	}
+}
+
+@mixin text {
+	font-size: rem(16);
+	line-height: rem(24);
+	color: $color-text;
+	padding-bottom: 24px;
+}
+
+// ----- common -----
+* {
+	box-sizing: border-box;
+}
+
+html,
+body,
+p,
+h1,
+h2,
+ul,
+li {
+	margin: 0;
+	padding: 0;
+}
+
+ul {
+	list-style-type: none;
+}
+
+a {
+	text-decoration: none;
+}
+
+html,
+body {
+	font-family: 'Metropolis';
+	font-weight: 500;
+	color: $color-text;
+	width: 100%;
+	height: 100%;
+}
+
+.wrap {
+	//display: grid;
+	//width:100%;
+	//min-height: 100%;	
+	 //grid-template-areas:
+	 //	"leftSideBarB mainHeaderB"
+	// 	"leftSideBarB mainContentB"
+	// 	"leftSideBarB mainFooterB";
+	// grid-template-rows: rem(60) 1fr rem(30);
+	// grid-template-columns: rem(100) 1fr;
+
+	//background-color: brown;
+
+	min-height: 100%;
+	display: grid;
+	grid-template-rows: rem(60) auto rem(30);
+	grid-template-columns: 100%;
+
+	grid-template-areas:
+	 	"mainHeaderB"
+	 	"mainContentB"
+	 	"mainFooterB";	
+}
+
+.leftSideBar {
+	background-color: blue;
+	grid-area: leftSideBarB;
+}
+
+.mainHeader {
+	background-color: green;
+	grid-area: mainHeaderB;
+}
+
+.mainContent {
+	//background-color: yellow;
+	grid-area: mainContentB;
+}
+
+.mainFooter {
+	background-color: grey;
+	grid-area: mainFooterB;
+}
+
+.myBlock {
+	overflow: auto;
+}
+
+
+[class*="__container"] {
+	width: 100%;
+	max-width: 970px;
+	margin: 0 auto;
+	padding: 0 15px;
+}
+
+.fx {
+	position: fixed;
+}
+
+.button {
+	display: inline-block;
+	padding: 12px 24px;
+	border-radius: 23px;
+	font-size: rem(14);
+	line-height: rem(14);
+	background: #fff;
+	border: 1px solid #fff;
+	color: $color-primary;
+	transition: $transition;
+
+	&:hover {
+		background: lighten($color-primary, 43%);
+		border-color: lighten($color-primary, 43%);
+	}
+
+	&-outlined {
+		background: transparent;
+		border: 1px solid $color-primary;
+		color: $color-primary;
+
+		&:hover {
+			background: lighten($color-primary, 43%);
+			border-color: $color-primary;
+		}
+	}
+
+	&-fill {
+		background: $color-primary;
+		border: 1px solid $color-primary;
+		color: #fff;
+
+		&:hover {
+			background: darken($color-primary, 15%);
+			border-color: darken($color-primary, 15%);
+		}
+	}
+}
+
+.section-label {
+	display: inline-block;
+	background-color: $color-secondary;
+	padding: 8px 16px;
+	color: $color-primary;
+	font-size: rem(16);
+	line-height: rem(24);
+	border-radius: 20px;
+
+	a {
+		color: $color-primary;
+		text-decoration: underline;
+	}
+}
+
+.icon {
+	padding-right: 8px;
+}
+
+// ----- header -----
+@import 'header';
+// ----- steps -----
+//@import 'steps';
+// ----- product -----
+//@import 'product';
+// ----- data -----
+//@import 'data';
+// ----- partners -----
+//@import 'partners';
+// ----- 'trust' -----
+//@import 'trust';
+// ----- footer -----
+//@import 'footer';

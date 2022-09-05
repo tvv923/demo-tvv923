@@ -1,0 +1,285 @@
+.header {
+	min-height: 80vh;
+	position: relative;
+	background: linear-gradient(180deg, #fff 0%, #E2F1FF 80%, transparent 81%);
+	
+	&::after {
+		position: absolute;
+		background: #E2F1FF;
+		content: '';
+		display: block;
+		bottom: 0;
+		left: 0;
+		width: 100%;
+		height: 20%;
+		transform: skewY(-4deg);
+		transform-origin: bottom left;
+		z-index: -1;
+	}
+
+	&__container {
+		position: relative;
+		min-height: 100vh;
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+	}
+
+	&__body {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		gap: 16px;
+
+		@media (max-width: $phone) {
+			padding: 100px 0 50px;
+			flex-direction: column;
+			align-items: flex-start;
+		}
+	}
+
+	&__content {
+		width: 50%;
+
+		@media (max-width: $phone) {
+			width: 100%;
+		}
+	}
+
+	&__title {
+		h1 {
+			padding: 24px 0;
+			font-weight: 700;
+			font-size: rem(48);
+			line-height: rem(48);
+			color: $color-dark;
+		}
+	}
+
+	&__text {
+		line-height: rem(24);
+		padding-bottom: 24px;
+	}
+
+	&__image {
+		width: 50%;
+
+		@media (max-width: $phone) {
+			width: 100%;
+		}
+
+		img {
+			width: 100%;
+		}
+	}
+
+	&__buttons {
+		display: flex;
+		gap: 16px;
+		padding-bottom: 24px;
+	}
+}
+
+.nav {
+	position: absolute;
+	top: 20px;
+	left: 0;
+	padding: 0 15px;
+	width: 100%;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+
+	&__logo {
+		@media (max-width: $phone) {
+			position: relative;
+			z-index: 2;
+		}
+	}
+
+	&__body {
+		display: flex;
+		gap: 40px;
+		align-items: center;
+
+		@media (max-width: $phone) {
+			position: fixed;
+			top: 0;
+			left: 100%;
+			width: 100%;
+			height: 100%;
+			background: #fff;
+			overflow-y: auto;
+			flex-direction: column;
+			z-index: 1;
+			padding-bottom: 20px;
+			transition: $transition;
+
+			&.menu-show {
+				left: 0;
+
+				&::before {
+					position: fixed;
+					content: '';
+					height: 90px;
+					width: 100%;
+					top: 0;
+					left: 0;
+					background: #fff;
+					z-index: 3;
+				}
+			}
+		}
+	}
+
+	&__items {
+		display: flex;
+		align-items: center;
+		gap: 40px;
+
+		@media (max-width: $phone) {
+			flex-direction: column;
+			align-items: flex-start;
+			padding-top: 90px;
+		}
+	}
+
+	&__item {
+		position: relative;
+	}
+
+	&__parent-item {
+		padding-right: 20px;
+
+		&>a::before {
+			position: absolute;
+			content: '\23F7';
+			left: 100%;
+			top: -5px;
+			margin-left: 5px;
+		}
+
+		@media (max-width: $phone) {
+			padding-right: 0;
+		}
+	}
+
+	&__link {
+		color: $color-dark;
+		position: relative;
+
+		&::after {
+			content: '';
+			position: absolute;
+			width: 0;
+			height: 2px;
+			background-color: $color-primary;
+			left: 50%;
+			bottom: -7px;
+			transition: $transition;
+		}
+
+		&:hover::after {
+			left: 0;
+			width: 100%;
+		}
+	}
+
+	&__sub-items {
+		display: none;
+
+		&.sub-menu-open {
+			display: block;
+			position: absolute;
+			top: 21px;
+			padding: 0;
+			background-color: #fff;
+			border-top: 2px solid $color-primary;
+
+			@media (max-width: $phone) {
+				position: relative;
+				border: none;
+				margin-left: 20px;
+			}
+		}
+	}
+
+	&__sub-item {
+		border: 1px solid $color-secondary;
+		border-bottom: 0;
+
+		@media (max-width: $phone) {
+			border: none;
+		}
+	}
+
+	&__sub-link {
+		display: block;
+		padding: 14px;
+		font-size: rem(16);
+		color: $color-dark;
+
+		&:hover {
+			background: $color-secondary;
+		}
+	}
+}
+
+.menu-btn {
+	display: none;
+
+	@media (max-width: $phone) {
+		display: block;
+		width: 35px;
+		height: 35px;
+		display: flex;
+		align-items: center;
+		cursor: pointer;
+		z-index: 2;
+
+		span {
+			display: block;
+			width: 100%;
+			height: 4px;
+			background-color: $color-primary;
+			position: relative;
+
+			&::before,
+			&::after {
+				content: '';
+				display: block;
+				position: absolute;
+				width: 100%;
+				height: 4px;
+				background-color: $color-primary;
+				transition: $transition;
+			}
+
+			&::before {
+				top: -10px;
+				left: 0;
+			}
+
+			&::after {
+				top: 10px;
+				left: 0;
+			}
+		}
+
+		&-close {
+			span {
+				height: 0;
+
+				&::before {
+					transform: rotate(45deg);
+					top: 0;
+				}
+
+				&::after {
+					transform: rotate(-45deg);
+					top: 0;
+				}
+			}
+		}
+	}
+}
